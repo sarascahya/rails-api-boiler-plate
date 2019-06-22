@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: rails_api_boiler_plate_staging
+
+test:
+  <<: *default
+  database: rails_api_boiler_plate_api_test
+
+production:
+  <<: *default
+  database: rails_api_boiler_plate_api_production
+  username: rails_api_boiler_plate_api
+  password: <%= ENV['RAILS_API_BOILER_PLATE_API_DATABASE_PASSWORD'] %>
+  port: 5432
